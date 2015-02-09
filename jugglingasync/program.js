@@ -63,7 +63,4 @@ function retriever(urls){
   }
 }
 
-process.argv.shift();
-process.argv.shift();
-
-retriever(process.argv);
+retriever(process.argv.slice(2));
