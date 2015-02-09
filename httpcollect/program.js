@@ -14,21 +14,20 @@ sent by the server.
 
 */
 var http = require('http');
-
 var url = process.argv[2];
+var Buffer = require('bl')
 
 http.get(url, function(response) {
-  var buffer = "";
-
-  response.setEncoding('utf8');
+  var buffer = new Buffer();
   
   response.on("data", function (data) { 
-    buffer += data;
+    buffer.append(data);
   });
  
   response.on("end", function(){
-    console.log(buffer.length);
-    console.log(buffer);
+    var str = buffer.toString();
+    console.log(str.length);
+    console.log(str);
   });
 }); 
 
